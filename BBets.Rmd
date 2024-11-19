@@ -89,8 +89,31 @@ To determine how Brownlow's earnings reach zero, we identified an odds value of 
 <!--Decide on your methods:  In this section
 explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 
+```{r}
+mymin=numeric(1000)
+for (i in 1:1000) {
+  mymin[i]=BrLw(numClass = 28)
+}
+ smymin<- sort(mymin)
+ 
+ low=smymin[25]
+ high=smymin[975]
+ 
+ mean(smymin)
+ 
+  cat("low value (25th percentile):", low, "\n")
+ cat("high value (975th percentile):", high, "\n")
+ 
+ hist(smymin,
+      main="Histogram of Sorted Values",
+      xlab="Values",
+      ylab="Frequency",
+      col="skyblue",
+      border="blue",
+      breaks=100)
+```
 
-
+A class size of 28 is ideal, but it does not bring Brownlow's earnings to exactly zero. Achieving zero earnings would require a fractional number of students, which is not feasible. At a class size of 29, earnings are approximately $29, while at a class size of 28, earnings are around -$23. Therefore, a class size of 28 is the best option to bring Brownlow's earnings as close to zero as possible. This conclusion was reached through trial and error.
 
 # What size of class makes the 2:1 bet fair?  Use manipulation of number of Students to tune Brownlows earnings to zero.
 
